@@ -1,0 +1,30 @@
+{
+  "name": "academiadecursosonline",
+  "version": "1.0.0",
+  "description": "Proyecto final de BackEnd curso Prof Daniel Segovia ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guebebraga/AcademiaDeCursosOnline.git"
+  },
+  "author": "gabrielBraga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guebebraga/AcademiaDeCursosOnline/issues"
+  },
+  "homepage": "https://github.com/guebebraga/AcademiaDeCursosOnline#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.1"
+  }
+}
