@@ -1,32 +1,54 @@
-/*const mongoose = require('../config/mongo')
+const mongoose = require('../config/mongo')
 //const ObjectId = mongoose.Types.ObjectId
 const bcrypt = require('bcrypt');
      
-const blogSchema = new mongoose.Schema({
-    titulo: String,
-    descripcion: String,
-    activa: Boolean,
-    usuario: {
+const userSchema = new mongoose.Schema({
+    nombre: String,
+    apellido: String,
+    username: String,
+    password : String,
+    rol: String,
+    /*usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'usuarios', 
-    }
+    }*/
 },{timestamps: true})
 
-const Blog = mongoose.model('blogs', blogSchema);
+const User = mongoose.model('users', userSchema);
 
-async function getBlog (titulo){
-    try{
-      console.log('estoy en models')
-      let blog = await Blog.findOne({titulo:titulo}).populate('usuario')//.select('username');
-      return blog;
+async function get(user, pass){
+  try{
+      console.log(user)
+      console.log(pass)
+      const res = await User.findOne({username:user})
+      console.log(res)
+      const compare = await bcrypt.compare(pass, res.password)
+      console.log(compare)
+      if(!compare){
+        throw ('contraseña incorrecta')
+      }
+      console.log(user,pass)
+      return (res)
+  }
+  catch (error) {
+      throw (`imposible retornar ${error}`)
+  }
+}
 
+async function post (datos){
+  try {
+    const newUser = new User(datos);
+    const salt = await bcrypt.genSalt(10)
+    const passHashed = await bcrypt.hash(newUser.password, salt)
+    newUser.password = passHashed
+    newUser.save();
+    return newUser
   }catch (error) {
-    throw (`Imposible retornar blog: ${error}`)
+    throw (`Imposible postear user: ${error}`)
   }
 }
 
 
-module.exports = {crearblog, getBlog, borrarblog, retornarTodosLosBlogs}
 
+module.exports = {post, get}
 
-*/
