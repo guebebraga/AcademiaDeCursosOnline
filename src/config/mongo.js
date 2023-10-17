@@ -11,7 +11,7 @@ console.log(process.env.MONGO_URI)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error de conexión:'));
 db.once('open', () => {
-  console.log('Conexión exitosa con la base de datos.');
+  console.log('Successful connection to the database');
 });
 
 module.exports = mongoose

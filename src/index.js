@@ -6,6 +6,8 @@ app.use(express.json())
 
 app.use('/',academiaDeCursos)
 app.use('/',academiaDeCursos)
+app.use('/',academiaDeCursos)
+
 
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)
