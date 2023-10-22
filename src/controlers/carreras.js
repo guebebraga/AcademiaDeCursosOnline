@@ -10,6 +10,7 @@ const post = async(req,res)=>{
         /*if(datos.rol !== 'admin'){
             throw 'Solo los admin pueden ingresar carreras'
         }*/
+        console.log(req.body)
         console.log(datos)
         return res.status(200).json({datos})
     }catch(error){

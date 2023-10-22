@@ -1,12 +1,15 @@
 require('dotenv').config()
 const express = require('express')
-const academiaDeCursos = require('./routes/index')
+const postUsers = require('./routes/index')
+const getUsers = require('./routes/users')
+const postCarreras = require('./routes/carreras')
+
 const app = express()
 app.use(express.json())
 
-app.use('/',academiaDeCursos)
-app.use('/',academiaDeCursos)
-app.use('/',academiaDeCursos)
+app.use('/', postUsers)
+app.use('/', getUsers)
+app.use('/', postCarreras)
 
 
 app.listen(process.env.PORT,function(){
@@ -14,7 +17,7 @@ app.listen(process.env.PORT,function(){
   })
 
 /*  
-                             Trabajo final
+                                Trabajo final
 
 Documento de Requisitos del Producto (PRD) – Academia de Cursos Online
 
