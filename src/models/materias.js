@@ -3,7 +3,7 @@ const mongoose = require('../config/mongo')
 const bcrypt = require('bcrypt');
 
 const materiasSchema = new mongoose.Schema({
-    título: String,
+    titulo: String,
     descripcion: String,
     examenes: String,
     carrera: {
@@ -11,9 +11,32 @@ const materiasSchema = new mongoose.Schema({
       ref: 'carreras', 
     }
 },{timestamps: true})
-
+//
 const Materias = mongoose.model('materias', materiasSchema);
+//
+async function post(data) {
+  try{
+    const nuevaMateria = new Materias(data)
+    nuevaMateria.save(); 
+    return nuevaMateria
 
+  }catch (error) {
+    throw ('Imposible insertar Carrera')
+  }
+}
+
+async function get (_id){
+  try{
+    console.log('estoy en models')
+    let materia = await Blog.findOne({_id:_id})//.populate('carrera')//.select('username');
+    return materia;
+
+}catch (error) {
+  throw (`Imposible retornar blog: ${error}`)
+}
+}
+
+module.exports = {post, get}
 
 
 module.exports={}

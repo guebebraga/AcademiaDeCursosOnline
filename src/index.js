@@ -3,6 +3,7 @@ const express = require('express')
 const postUsers = require('./routes/index')
 const getUsers = require('./routes/users')
 const postCarreras = require('./routes/carreras')
+const postMatrias = require('./routes/materias')
 
 const app = express()
 app.use(express.json())
@@ -10,7 +11,7 @@ app.use(express.json())
 app.use('/', postUsers)
 app.use('/', getUsers)
 app.use('/', postCarreras)
-
+app.use('/', postMatrias)
 
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)
