@@ -22,7 +22,7 @@ const get = async(req,res)=>{
      if(!materia){
         return res.status(401).json({mensaje:"No se encontro materia"})
      }
-     return res.status(200).json({mensaje:`materia encontrada`,materia})
+     return res.status(200).json({mensaje:`Resultados de la busqueda`,materia})
 
     }catch(error){
         console.log(error)
