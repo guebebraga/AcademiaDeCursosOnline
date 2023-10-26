@@ -1,4 +1,4 @@
-const modeloMaterias = require('../models/materias')
+const modeloMaterias = require("../models/materias")
 const { Error } = require("../config/mongo.js");
 
 const post = async(req,res)=>{
@@ -20,7 +20,7 @@ const get = async(req,res)=>{
      materia = await modeloMaterias.get(req.body._id)
      console.log(materia)
      if(!materia){
-        return res.status(401).json({mensaje:"No se cargaron datos"})
+        return res.status(401).json({mensaje:"No se encontro materia"})
      }
      return res.status(200).json({mensaje:`materia encontrada`,materia})
 
@@ -29,7 +29,7 @@ const get = async(req,res)=>{
         return res.status(500).json({mensaje:"A ocurrido un error"})
     }
 };
-
+//
 
 
 

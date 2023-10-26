@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const materiasSchema = new mongoose.Schema({
     titulo: String,
     descripcion: String,
-    examenes: String,
+    examenes: String ,
     carrera: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'carreras', 
@@ -16,6 +16,7 @@ const Materias = mongoose.model('materias', materiasSchema);
 //
 async function post(data) {
   try{
+    console.log('llegue hasta aca')
     const nuevaMateria = new Materias(data)
     nuevaMateria.save(); 
     return nuevaMateria
@@ -25,10 +26,11 @@ async function post(data) {
   }
 }
 
+
 async function get (_id){
   try{
     console.log('estoy en models')
-    let materia = await Blog.findOne({_id:_id})//.populate('carrera')//.select('username');
+    let materia = await Materias.findOne({_id:_id}).populate('carrera')//.select('username');
     return materia;
 
 }catch (error) {
@@ -39,4 +41,3 @@ async function get (_id){
 module.exports = {post, get}
 
 
-module.exports={}

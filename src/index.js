@@ -1,17 +1,18 @@
 require('dotenv').config()
 const express = require('express')
-const postUsers = require('./routes/index')
-const getUsers = require('./routes/users')
-const postCarreras = require('./routes/carreras')
-const postMatrias = require('./routes/materias')
+const routerIndex = require('./routes/index')
+const routerUsers = require('./routes/users')
+const routerCarreras = require('./routes/carreras')
+const routerMatrias = require('./routes/materias')
 
 const app = express()
 app.use(express.json())
 
-app.use('/', postUsers)
-app.use('/', getUsers)
-app.use('/', postCarreras)
-app.use('/', postMatrias)
+app.use('/', routerIndex)
+app.use('/', routerUsers)
+app.use('/', routerCarreras)
+app.use('/', routerMatrias)
+app.use('/', routerMatrias)
 
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)
