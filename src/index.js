@@ -4,6 +4,7 @@ const routerIndex = require('./routes/index')
 const routerUsers = require('./routes/users')
 const routerCarreras = require('./routes/carreras')
 const routerMatrias = require('./routes/materias')
+const routerExams = require('./routes/examenes')
 
 const app = express()
 app.use(express.json())
@@ -13,6 +14,9 @@ app.use('/', routerUsers)
 app.use('/', routerCarreras)
 app.use('/', routerMatrias)
 app.use('/', routerMatrias)
+app.use('/', routerExams)
+app.use('/', routerExams)
+
 
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)

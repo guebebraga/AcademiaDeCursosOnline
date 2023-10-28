@@ -30,11 +30,11 @@ async function post(data) {
 async function get (_id){
   try{
     console.log('estoy en models')
-    let materia = await Materias.findOne({_id:_id}).populate('carrera')//.select('username');
+    let materia = await Materias.findOne({_id:_id}).populate('carrera')//.select('titulo');
     return materia;
 
 }catch (error) {
-  throw (`Imposible retornar blog: ${error}`)
+  throw (`Imposible retornar materia: ${error}`)
 }
 }
 
