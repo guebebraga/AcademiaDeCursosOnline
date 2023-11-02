@@ -10,7 +10,7 @@ const get = async(req, res)=>{
         if(!examen){
             return res.status(401).json({mensaje :"No se encontro examen"})
         }
-        return res.status(200).json({mensaje: `Examen encontrado`})
+        return res.status(200).json({mensaje: `Examen encontrado`, examen})
     }catch(error){
         return res.status(500).json({mensaje:"Estas en el catch baby"})
     }

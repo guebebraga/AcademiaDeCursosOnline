@@ -30,7 +30,7 @@ async function post(data) {
 async function get (_id){
   try{
     console.log('estoy en models')
-    let materia = await Materias.findOne({_id:_id}).populate('carrera')//.select('titulo');
+    let materia = await Materias.findOne({_id:_id}).populate('carrera');
     return materia;
 
 }catch (error) {

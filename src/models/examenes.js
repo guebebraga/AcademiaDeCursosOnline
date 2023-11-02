@@ -3,8 +3,8 @@ const mongoose = require('../config/mongo')
 const examenesSchema = new mongoose.Schema({
     preguntas: String,
     respuestas: String,
-    duración: String,
-    calificación: String, 
+    duracion: String,
+    calificacion: String, 
     materia:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'materias'
