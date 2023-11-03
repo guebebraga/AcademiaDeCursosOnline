@@ -2,7 +2,13 @@ const modeloCarreras = require("../models/carreras.js")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Error } = require("../config/mongo.js");
+/*
+Administrador
+Evaluador
+Profesor
+Alumno
 
+*/
 
 const post = async(req,res)=>{
     try {

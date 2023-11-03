@@ -27,8 +27,13 @@ const get = async(req,res)=>{
         return res.status(500).json({mensaje:"A ocurrido un error"})
     }
 };
+/*
+Administrador
+Evaluador
+Profesor
+Alumno
 
-
+*/
 const post = async(req,res)=>{
     try {
         let datos= await modeloUser.post(req.body)
@@ -38,8 +43,6 @@ const post = async(req,res)=>{
         return res.status(500).json({mensaje:"Entraste en el catch de controlers"})
     }
 }
-
-
 
 module.exports={post, get}
 
