@@ -13,15 +13,18 @@ const rolValidation = async (req,res,next)=>{
 }
 
 const adminValidation = async (req, res, next)=>{
-try{
-    const datos = req.body
-    if(datos.rol !=="Administrador"){
-        return res.status(401).json({mensaje:"Necesitas ser Administrador para hacer eso"})
+    try{
+        const datos = req.body
+        if(datos.rol !=="Administrador"){
+            return res.status(401).json({mensaje:"Necesitas ser Administrador para hacer eso"})
+        }
+        next();
+    }catch(error) {
+        if(!datos) return res.status(500).json({mensaje:"A ocurrido un error"})
     }
-    next();
-}catch(error) {
-    if(!datos) return res.status(500).json({mensaje:"A ocurrido un error"})
-}
-}
+    }
+    
+    module.exports = {adminValidation,rolValidation}
 
-module.exports = {rolValidation, adminValidation}
+
+

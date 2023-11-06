@@ -5,7 +5,8 @@ const middlewares = require('../middlewares/logged')
 
 //router.use(middlewares.logged)
 
-router.get('/users', controlersUser.get)
+router.get('/user', controlersUser.get)
 
 
 module.exports= router
+//

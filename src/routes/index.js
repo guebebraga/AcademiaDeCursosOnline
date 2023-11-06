@@ -5,7 +5,8 @@ const middlewares = require('../middlewares/users')
 
 //router.use(middlewares.adminValidation)
 
-router.post('/users', middlewares.rolValidation, controlersUser.post)
+router.post('/users', middlewares.adminValidation, middlewares.rolValidation, controlersUser.post)
 
 
 module.exports= router
+
