@@ -11,9 +11,11 @@ app.use(express.json())
 
 app.use('/', routerIndex)
 app.use('/', routerUsers)
-app.use('/', routerUsers)
+app.use('/', routerIndex)
 app.use('/', routerCarreras)
-app.use('/', routerCarreras)//
+app.use('/', routerCarreras)
+app.use('/', routerCarreras)
+app.use('/', routerMatrias)
 app.use('/', routerMatrias)
 app.use('/', routerMatrias)
 app.use('/', routerExams)

@@ -40,6 +40,20 @@ const get = async(req, res)=>{
     }
 }
 
+const borrar = async(req,res)=>{
+    try{
+    carrera = await modeloCarreras.borrar(req.body._id)
+    if(!carrera){
+        return res.status(401).json({mensaje:"No se encontro carrera"})
+     }
+     return res.status(200).json({mensaje:`Se borro con exito la carrera`})
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+}
 
 
-module.exports={post, get}
+
+module.exports={post, get, borrar}

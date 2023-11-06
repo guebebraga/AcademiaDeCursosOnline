@@ -38,6 +38,14 @@ async function get (_id){
 }
 }
 
-module.exports = {post, get}
+async function borrar(id){
+  try{
+   let materia = await Materias.findOneAndDelete({_id: id})
+   return `Se borro correctamente el materia`
+  }catch (error) {
+    throw (`Imposible borrar user: ${error}`)
+  }}
+
+module.exports = {post, get, borrar}
 
 

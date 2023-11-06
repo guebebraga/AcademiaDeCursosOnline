@@ -6,6 +6,7 @@ const middlewaresLogged = require('../middlewares/logged')
 router.use(middlewaresLogged.logged)
 
 router.post('/materias', controlersMaterias.post)
-router.get('/materias', controlersMaterias.get)
+router.get('/materia', controlersMaterias.get)
+router.delete('/materia',controlersMaterias.borrar)
 
 module.exports= router
