@@ -24,5 +24,22 @@ const post = async(req,res)=>{
     }
 }
 
+const get = async(req, res)=>{
+    try{
+        let {_id}= req.body
+        if(!_id){
+            return res.status(401).json({mensaje :"Falta ingresar _id"})
+        }
+        carrera = await modeloCarreras.get(_id)
+        if(!carrera){
+            return res.status(401).json({mensaje :"No se encontro carrera"})
+        }
+        return res.status(200).json({mensaje: `Carrera encontrada`, carrera})
+    }catch(error){
+        return res.status(500).json({mensaje:"Estas en el catch baby"})
+    }
+}
 
-module.exports={post}
+
+
+module.exports={post, get}

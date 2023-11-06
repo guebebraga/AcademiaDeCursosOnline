@@ -48,7 +48,15 @@ async function post (datos){
   }
 }
 
+async function borrar(id){
+  try{
+   let user = await User.findOneAndDelete({_id: id})
+   return `Se borro correctamente el usuario ${user.username}`
+  }catch (error) {
+    throw (`Imposible borrar user: ${error}`)
+  }}
 
 
-module.exports = {post, get}
+
+module.exports = {post, get, borrar}
 

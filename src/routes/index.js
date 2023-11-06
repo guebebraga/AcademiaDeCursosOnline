@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router();
 const controlersUser = require('../controlers/users')
 const middlewares = require('../middlewares/users')
+const middlewaresLogged =require('../middlewares/logged')
 
-//router.use(middlewares.adminValidation)
+router.use(middlewaresLogged.logged)
 
-router.post('/users', middlewares.adminValidation, middlewares.rolValidation, controlersUser.post)
-
+router.post('/users', middlewares.rolValidation, controlersUser.post)
+router.delete('/user', controlersUser.borrar)
 
 module.exports= router
 

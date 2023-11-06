@@ -25,4 +25,17 @@ async function post(data) {
   }
 }
 
-module.exports = {post}
+async function get(_id){
+  try{
+      let carrera= await Carreras.findOne({_id:_id})//.populate('materia')
+      return carrera;
+
+  }catch(error){
+      throw (`No se pudo retornar carrera ${error}`)
+  }
+}
+
+
+
+
+module.exports = {post, get}

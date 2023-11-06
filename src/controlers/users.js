@@ -44,5 +44,20 @@ const post = async(req,res)=>{
     }
 }
 
-module.exports={post, get}
+const borrar = async(req,res)=>{
+    try{
+    user = await modeloUser.borrar(req.body._id)
+    if(!user){
+        return res.status(401).json({mensaje:"No se encontro user"})
+     }
+     return res.status(200).json({mensaje:`Se borro con exito el user`})
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+}
+
+
+module.exports={post, get, borrar}
 

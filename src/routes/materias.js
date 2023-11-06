@@ -1,12 +1,11 @@
 const express = require('express')
 const router = express.Router();
 const controlersMaterias = require('../controlers/materias')
-const middlewaresAdmin= require('../middlewares/users')
+const middlewaresLogged = require('../middlewares/logged')
 
-//router.use(middlewares.logged)
+router.use(middlewaresLogged.logged)
 
-router.post('/materias', middlewaresAdmin.adminValidation, controlersMaterias.post)
-router.get('/materias', middlewaresAdmin.adminValidation, controlersMaterias.get)
+router.post('/materias', controlersMaterias.post)
+router.get('/materias', controlersMaterias.get)
 
 module.exports= router
-//
