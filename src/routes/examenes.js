@@ -7,7 +7,8 @@ router.use(middlewares.logged)
 
 
 router.post('/examenes', controlersExam.post)
-router.get('/examenes', controlersExam.get)
-
+router.get('/examene', controlersExam.get)
+router.delete('/examen', controlersExam.borrar)
+router.put('/examen/:examenId', controlersExam.put)
 
 module.exports=router

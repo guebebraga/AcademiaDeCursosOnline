@@ -35,6 +35,15 @@ async function get(_id){
   }
 }
 
+async function put(datos, id){
+  try{
+    const carrera = await Carreras.findByIdAndUpdate(id, datos, { new: true });
+    return carrera
+  }catch (error) {
+    throw (`Imposible modificar user: ${error}`)
+  }
+}
+
 async function borrar(id){
   try{
    let carrera = await Carreras.findOneAndDelete({_id: id})
@@ -43,7 +52,4 @@ async function borrar(id){
     throw (`Imposible borrar user: ${error}`)
   }}
 
-
-
-
-module.exports = {post, get, borrar}
+module.exports = {post, get, borrar, put}

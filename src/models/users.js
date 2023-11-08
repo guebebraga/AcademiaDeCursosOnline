@@ -1,7 +1,11 @@
 const mongoose = require('../config/mongo')
 //const ObjectId = mongoose.Types.ObjectId
 const bcrypt = require('bcrypt');
-     
+
+/*username: { type: String, required: true, index: { unique: true } },
+  password: { type: String, required: true, select: false } */
+
+
 const userSchema = new mongoose.Schema({
     nombre: String,
     apellido: String,
@@ -48,6 +52,15 @@ async function post (datos){
   }
 }
 
+async function put(datos, id){
+  try{
+    const user = await User.findByIdAndUpdate(id, datos, { new: true });
+    return user
+  }catch (error) {
+    throw (`Imposible modificar user: ${error}`)
+  }
+}
+
 async function borrar(id){
   try{
    let user = await User.findOneAndDelete({_id: id})
@@ -58,5 +71,5 @@ async function borrar(id){
 
 
 
-module.exports = {post, get, borrar}
+module.exports = {post, get, borrar, put}
 

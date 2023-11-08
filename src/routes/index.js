@@ -8,6 +8,7 @@ router.use(middlewaresLogged.logged)
 
 router.post('/users', middlewares.rolValidation, controlersUser.post)
 router.delete('/user', controlersUser.borrar)
+router.put('/user/:userId', controlersUser.put)
 
 module.exports= router
 

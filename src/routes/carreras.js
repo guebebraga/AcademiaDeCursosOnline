@@ -10,5 +10,6 @@ router.use(middlewaresLogged.logged)
 router.post('/carreras', controlersCarreras.post)
 router.get('/carrera',controlersCarreras.get)
 router.delete('/carrera',controlersCarreras.borrar)
+router.put('/carrera/:carreraId', controlersCarreras.put)
 
 module.exports=router

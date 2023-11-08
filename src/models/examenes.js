@@ -34,4 +34,21 @@ async function get(_id){
     }
 }
 
-module.exports ={post, get}
+async function put(datos, id){
+    try{
+      const examen = await Examen.findByIdAndUpdate(id, datos, { new: true });
+      return examen
+    }catch (error) {
+      throw (`Imposible modificar examen: ${error}`)
+    }
+  }
+
+async function borrar(id){
+    try{
+     let examen = await Examen.findOneAndDelete({_id: id})
+     return `Se borro correctamente el examen`
+    }catch (error) {
+      throw (`Imposible borrar user: ${error}`)
+    }}
+
+module.exports ={post, get, borrar, put}

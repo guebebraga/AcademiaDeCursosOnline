@@ -30,6 +30,24 @@ const get = async(req,res)=>{
     }
 };
 
+const put = async(req,res)=>{
+    try{
+    const materiaId = req.params.materiaId
+    const data = req.body
+    materia = await modeloMaterias.put(data ,materiaId)
+    if(!materia){
+        return res.status(401).json({mensaje:"No se encontro materia"})
+     }
+
+     return res.status(200).json({mensaje:`Se modifico con exito la materia`, materia})
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+}
+
+
 const borrar = async(req,res)=>{
     try{
     materia = await modeloMaterias.borrar(req.body._id)
@@ -45,4 +63,4 @@ const borrar = async(req,res)=>{
 }
 
 
-module.exports={post, get, borrar}
+module.exports={post, get, borrar, put}

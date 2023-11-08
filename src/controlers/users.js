@@ -59,5 +59,24 @@ const borrar = async(req,res)=>{
 }
 
 
-module.exports={post, get, borrar}
+const put = async(req,res)=>{
+    try{
+    const userId = req.params.userId
+    const data = req.body
+    user = await modeloUser.put(data ,userId)
+    if(!user){
+        return res.status(401).json({mensaje:"No se encontro user"})
+     }
+
+     return res.status(200).json({mensaje:`Se modifico con exito el user`, user})
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+}
+
+
+
+module.exports={post, get, borrar, put}
 

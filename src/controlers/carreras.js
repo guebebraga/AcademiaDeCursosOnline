@@ -39,6 +39,22 @@ const get = async(req, res)=>{
         return res.status(500).json({mensaje:"Estas en el catch baby"})
     }
 }
+const put = async(req,res)=>{
+    try{
+    const carreraId = req.params.carreraId
+    const data = req.body
+    carrera = await modeloCarreras.put(data ,carreraId)
+    if(!carrera){
+        return res.status(401).json({mensaje:"No se encontro carrera"})
+     }
+
+     return res.status(200).json({mensaje:`Se modifico con exito la carrera`, carrera})
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+}
 
 const borrar = async(req,res)=>{
     try{
@@ -56,4 +72,4 @@ const borrar = async(req,res)=>{
 
 
 
-module.exports={post, get, borrar}
+module.exports={post, get, borrar, put}
