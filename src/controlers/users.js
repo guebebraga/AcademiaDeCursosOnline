@@ -17,7 +17,7 @@ const get = async(req,res)=>{
      }
      
      const token = jwt.sign(
-        { username: usuario.username, id: usuario._id, nombre:usuario.nombre, apellido:usuario.apellido },
+        { username: usuario.username, id: usuario._id, nombre:usuario.nombre, apellido:usuario.apellido, rol:usuario.rol },
         "miPassParaBack")
         console.log(token)
 
@@ -27,6 +27,7 @@ const get = async(req,res)=>{
         return res.status(500).json({mensaje:"A ocurrido un error"})
     }
 };
+//
 /*
 Administrador
 Evaluador

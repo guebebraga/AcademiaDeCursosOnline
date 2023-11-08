@@ -6,9 +6,9 @@ const middlewaresLogged =require('../middlewares/logged')
 
 router.use(middlewaresLogged.logged)
 
-router.post('/users', middlewares.rolValidation, controlersUser.post)
-router.delete('/user', controlersUser.borrar)
-router.put('/user/:userId', controlersUser.put)
+router.post('/users', middlewares.rolValidation, middlewares.adminValidacion, controlersUser.post)
+router.delete('/user', middlewares.adminValidacion, controlersUser.borrar)
+router.put('/user/:userId', middlewares.adminValidacion, controlersUser.put)
 
 module.exports= router
 
