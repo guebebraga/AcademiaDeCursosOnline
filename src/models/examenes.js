@@ -1,10 +1,10 @@
 const mongoose = require('../config/mongo')
 
 const examenesSchema = new mongoose.Schema({
-    preguntas: String,
-    respuestas: String,
-    duracion: String,
-    calificacion: String, 
+    preguntas: {type: String, required: true},
+    respuestas: {type: String, required: true},
+    duracion: {type: String, required: true},
+    calificacion: {type: String, required: true}, 
     materia:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'materias'

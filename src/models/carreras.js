@@ -4,11 +4,11 @@ const bcrypt = require('bcrypt');
 
 
 const carrerasSchema = new mongoose.Schema({
-    titulo: String,
-    descripcion: String,
-    cantMaterias: String,
-    ordenMaterias: String,
-    cronograma: String,
+    titulo: {type: String, required: true},
+    descripcion: {type: String, required: true},
+    cantMaterias: {type: String, required: true},
+    ordenMaterias: {type: String, required: true},
+    cronograma: {type: String, required: true},
 
 },{timestamps: true})
 

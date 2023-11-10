@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 
 const materiasSchema = new mongoose.Schema({
-    titulo: String,
-    descripcion: String,
-    examenes: String ,
+    titulo: {type: String, required: true},
+    descripcion: {type: String, required: true},
+    examenes: {type: String, required: true},
     carrera: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'carreras', 

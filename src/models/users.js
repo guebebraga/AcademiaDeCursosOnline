@@ -7,11 +7,11 @@ const bcrypt = require('bcrypt');
 
 
 const userSchema = new mongoose.Schema({
-    nombre: String,
-    apellido: String,
-    username: String,
-    password : String,
-    rol: String,
+    nombre: {type: String, required: true},
+    apellido: {type: String, required: true},
+    username: {type: String, required: true},
+    password : {type: String, required: true},
+    rol: {type: String, required: true}
     /*usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'usuarios', 

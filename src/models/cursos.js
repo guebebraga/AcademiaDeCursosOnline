@@ -4,7 +4,7 @@ const mongoose = require('../config/mongo')
 username: { type: String, required: true, index: { unique: true } },
 password: { type: String, required: true, select: false }
 */
-
+/*
 const cursosSchema = new mongoose.Schema({
     titulo: String,
     descripcion: String,
@@ -12,6 +12,15 @@ const cursosSchema = new mongoose.Schema({
     cargaHoraria: String,
 
 },{timestamps: true})
+*/
+const cursosSchema = new mongoose.Schema({
+  titulo: {type: String, required: true},
+  descripcion: {type: String, required: true},
+  duracion: {type: String, required: true},
+  cargaHoraria: {type: String, required: true}
+}, { timestamps: true });
+
+
 
 const Cursos = mongoose.model('cursos',cursosSchema);
 
