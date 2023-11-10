@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router();
 const controlersExam = require('../controlers/examenes')
-const middlewares = require('../middlewares/logged')
+const middlewaresLogged = require('../middlewares/logged')
+const middlewares = require('../middlewares/users')
 
-router.use(middlewares.logged)
+router.use(middlewaresLogged.logged)
 
 
-router.post('/examenes', controlersExam.post)
+router.post('/examenes', middlewares.adminSupValidacion, controlersExam.post)
 router.get('/examene', controlersExam.get)
 router.delete('/examen', controlersExam.borrar)
 router.put('/examen/:examenId', controlersExam.put)

@@ -27,8 +27,23 @@ const adminValidacion= async(req, res, next)=>{
         if (!user) return res.status(500).json({mensaje: "Error inesperado"})
 }
 }
-    
-    module.exports = {rolValidation, adminValidacion}
+
+const adminSupValidacion= async(req, res, next)=>{
+    try{
+        const bearerToken = req.header("authorization")
+        const token = bearerToken.split(' ')[1]
+        user = jwt.verify(token, process.env.TOKEN_SECRET)
+        if(user.rol!=='Administrador'&& user.rol!=='Supervisor'){
+            return res.status(401).json({mensaje:"Solo los Administradores y Supervisores pueden hacer eso"})
+        }
+        next()
+    }catch(error){
+        if (!user) return res.status(500).json({mensaje: "Error inesperado"})
+}
+}
+
+
+module.exports = {rolValidation, adminValidacion, adminSupValidacion}
 
 
 
