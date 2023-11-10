@@ -46,6 +46,9 @@ async function put(datos, id){
 async function borrar(id){
     try{
      let examen = await Examen.findOneAndDelete({_id: id})
+     if(!examen){
+        throw 'No se encontro examen'
+       }
      return `Se borro correctamente el examen`
     }catch (error) {
       throw (`Imposible borrar user: ${error}`)

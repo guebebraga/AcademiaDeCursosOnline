@@ -5,8 +5,8 @@ const rolValidation = async (req,res,next)=>{
     try{
         const datos = req.body
         if (datos.rol !=="Administrador" && datos.rol !=="Evaluador"
-        && datos.rol !=="Profesor" && datos.rol !=="Alumno"){
-            return res.status(401).json({mensaje:"Roles admitidos: Administrador Evaluador Profesor Alumno se debe respetar letras mayusculas"})
+        && datos.rol !=="Profesor" && datos.rol !=="Alumno" && datos.rol !=="Supervisor"){
+            return res.status(401).json({mensaje:"Roles admitidos: Administrador Evaluador Profesor Alumno Supervisor se debe respetar letras mayusculas"})
         }
         next();
     }catch(error){

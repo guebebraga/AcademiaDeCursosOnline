@@ -28,7 +28,6 @@ async function get (_id){
 
 async function post(data) {
   try{
-    console.log('llegue hasta aca')
     const nuevaMateria = new Materias(data)
     nuevaMateria.save(); 
     return nuevaMateria
@@ -50,6 +49,9 @@ async function put(datos, id){
 async function borrar(id){
   try{
    let materia = await Materias.findOneAndDelete({_id: id})
+   if(!materia){
+    throw 'No se encontro materia'
+   }
    return `Se borro correctamente el materia`
   }catch (error) {
     throw (`Imposible borrar user: ${error}`)

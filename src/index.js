@@ -5,6 +5,7 @@ const routerUsers = require('./routes/users')
 const routerCarreras = require('./routes/carreras')
 const routerMatrias = require('./routes/materias')
 const routerExams = require('./routes/examenes')
+const routerCursos = require('./routes/cursos')
 
 const app = express()
 app.use(express.json())
@@ -25,8 +26,12 @@ app.use('/', routerExams)
 app.use('/', routerExams)
 app.use('/', routerExams)
 app.use('/', routerExams)
+app.use('/', routerCursos)
+app.use('/', routerCursos)
+app.use('/', routerCursos)
+app.use('/', routerCursos)
 
-
+//
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)
   })

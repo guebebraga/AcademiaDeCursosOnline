@@ -40,16 +40,19 @@ async function put(datos, id){
     const carrera = await Carreras.findByIdAndUpdate(id, datos, { new: true });
     return carrera
   }catch (error) {
-    throw (`Imposible modificar user: ${error}`)
+    throw (`Imposible modificar carrera: ${error}`)
   }
 }
 
 async function borrar(id){
   try{
    let carrera = await Carreras.findOneAndDelete({_id: id})
+   if(!carrera){
+    throw 'No se encontro carrera'
+   }
    return `Se borro correctamente la carrera ${carrera.titulo}`
   }catch (error) {
-    throw (`Imposible borrar user: ${error}`)
+    throw (`Imposible borrar carrera: ${error}`)
   }}
 
 module.exports = {post, get, borrar, put}
