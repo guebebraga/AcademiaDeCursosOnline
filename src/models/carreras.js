@@ -9,6 +9,10 @@ const carrerasSchema = new mongoose.Schema({
     cantMaterias: {type: String, required: true},
     ordenMaterias: {type: String, required: true},
     cronograma: {type: String, required: true},
+    supervisor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users', 
+    }
 
 },{timestamps: true})
 
@@ -27,7 +31,7 @@ async function post(data) {
 
 async function get(_id){
   try{
-      let carrera= await Carreras.findOne({_id:_id})//.populate('materia')
+      let carrera= await Carreras.findOne({_id:_id}).populate('supervisor')
       return carrera;
 
   }catch(error){
