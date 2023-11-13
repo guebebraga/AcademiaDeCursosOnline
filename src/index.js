@@ -30,6 +30,7 @@ app.use('/', routerCursos)
 app.use('/', routerCursos)
 app.use('/', routerCursos)
 app.use('/', routerCursos)
+app.use('/', routerIndex)
 
 //
 app.listen(process.env.PORT,function(){

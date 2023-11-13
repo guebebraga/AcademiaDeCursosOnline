@@ -2,10 +2,6 @@ const mongoose = require('../config/mongo')
 //const ObjectId = mongoose.Types.ObjectId
 const bcrypt = require('bcrypt');
 
-/*username: { type: String, required: true, index: { unique: true } },
-  password: { type: String, required: true, select: false } */
-
-
 const userSchema = new mongoose.Schema({
     nombre: {type: String, required: true},
     apellido: {type: String, required: true},
@@ -72,7 +68,22 @@ async function borrar(id){
     throw (`Imposible borrar user: ${error}`)
   }}
 
+  /*await Users.aggregate([
+      { $match: { name: /Metal/ }}])); */
+
+async function allStudents(){
+  try{
+   let allStudents = await User.aggregate([
+    {
+      $match:{ rol: /Alumno/ig}
+    }
+  ]);
+  return ('Todos los alumnos', allStudents)
+  }catch(error){
+    throw (`No se puedo retornar ${error}`)
+  }
+}
 
 
-module.exports = {post, get, borrar, put}
+module.exports = {post, get, borrar, put, allStudents}
 

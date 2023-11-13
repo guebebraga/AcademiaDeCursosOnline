@@ -26,8 +26,8 @@ const get = async(req,res)=>{
     }catch(error){
         return res.status(500).json({mensaje:"A ocurrido un error"})
     }
-};
-//
+}
+
 /*
 Administrador
 Evaluador
