@@ -73,11 +73,20 @@ async function borrar(id){
 
 async function allStudents(){
   try{
-   let allStudents = await User.aggregate([
-    {
-      $match:{ rol: /Alumno/ig}
-    }
-  ]);
+    let allStudents = await User.aggregate([
+      {
+        $match: { rol: /Alumno/ig }
+      },
+      {
+        $project: {
+          nombre:1,
+          apellido:1, 
+          username:1,
+          rol:1 
+        }
+      }
+    ]);
+  
   return ('Todos los alumnos', allStudents)
   }catch(error){
     throw (`No se puedo retornar ${error}`)
