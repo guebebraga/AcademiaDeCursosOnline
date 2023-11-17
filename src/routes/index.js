@@ -10,7 +10,7 @@ router.use(middlewaresLogged.logged)
 router.post('/users', middlewares.rolValidation, middlewares.adminValidacion, controlersUser.post)
 router.delete('/user', middlewares.adminValidacion, controlersUser.borrar)
 router.put('/user/:userId', middlewares.adminValidacion, controlersUser.put)
-router.get('/students', controlerStudents.get)
+router.get('/students', middlewares.profesorValidacion, controlerStudents.get)
 
 module.exports= router
 

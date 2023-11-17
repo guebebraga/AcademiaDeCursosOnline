@@ -28,7 +28,7 @@ const adminValidacion= async(req, res, next)=>{
 }
 }
 
-const adminSupValidacion= async(req, res, next)=>{
+const supValidacion= async(req, res, next)=>{
     try{
         const bearerToken = req.header("authorization")
         const token = bearerToken.split(' ')[1]
@@ -42,8 +42,23 @@ const adminSupValidacion= async(req, res, next)=>{
 }
 }
 
+const profesorValidacion= async(req, res, next)=>{
+    try{
+        const bearerToken = req.header("authorization")
+        const token = bearerToken.split(' ')[1]
+        user = jwt.verify(token, process.env.TOKEN_SECRET)
+        if(user.rol!=='Administrador'&& user.rol!=='Profesor'){
+            return res.status(401).json({mensaje:"Solo los Administradores y Profesores pueden hacer eso"})
+        }
+        next()
+    }catch(error){
+        if (!user) return res.status(500).json({mensaje: "Error inesperado"})
+}
+}
 
-module.exports = {rolValidation, adminValidacion, adminSupValidacion}
+
+
+module.exports = {rolValidation, adminValidacion, supValidacion, profesorValidacion}
 
 
 
