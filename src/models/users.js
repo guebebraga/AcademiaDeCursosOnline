@@ -82,7 +82,8 @@ async function allStudents(){
           nombre:1,
           apellido:1, 
           username:1,
-          rol:1 
+          rol:1, 
+          _id:1
         }
       }
     ]);
