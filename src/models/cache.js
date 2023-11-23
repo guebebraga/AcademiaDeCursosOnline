@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import redisClient from "../config/redis.mjs";
+const mongoose = require('mongoose');
+const redisClient = require ("../config/redis.js");
 
 const execOriginal = mongoose.Query.prototype.exec;
 
@@ -48,4 +48,4 @@ mongoose.Query.prototype.exec = async function () {
 };
 
 
-export default mongoose
+module.exports = mongoose

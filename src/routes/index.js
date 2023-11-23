@@ -11,6 +11,7 @@ router.post('/users', middlewares.rolValidation, middlewares.adminValidacion, co
 router.delete('/user', middlewares.adminValidacion, controlersUser.borrar)
 router.put('/user/:userId', middlewares.adminValidacion, controlersUser.put)
 router.get('/students', middlewares.profesorValidacion, controlerStudents.get)
+router.get('/profile',controlersUser.profile)
 
 module.exports= router
 

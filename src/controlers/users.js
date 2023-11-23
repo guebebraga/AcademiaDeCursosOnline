@@ -3,6 +3,26 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Error } = require("../config/mongo.js");
 
+
+const profile = async (req, res)=>{
+    try{
+        let _id = req.body
+        if(!_id){
+            return res.status(401).json({mensaje:"Faltan ingresar _id"})
+        }
+        usuario = await modeloUser.profile(_id)
+        if(!usuario)
+        {
+           return res.status(401).json({mensaje:"Algo no esta nada bien"})
+        }
+
+        return res.status(200).json({mensaje:`Profile ${usuario}`})
+    }catch(error){
+        return res.status(500).json({mensaje:"No se puede devolver perfil"})
+    }
+}
+
+
 const get = async(req,res)=>{
     try{
      let {username, password}=req.body
@@ -79,5 +99,5 @@ const put = async(req,res)=>{
 
 
 
-module.exports={post, get, borrar, put}
+module.exports={post, get, borrar, put, profile}
 

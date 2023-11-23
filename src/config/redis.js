@@ -12,4 +12,4 @@ let redisClient;
   
   
   
-  export default redisClient
+  module.exports = redisClient
