@@ -16,7 +16,7 @@ const profile = async (req, res)=>{
            return res.status(401).json({mensaje:"Algo no esta nada bien"})
         }
 
-        return res.status(200).json({mensaje:`Profile ${usuario}`})
+        return res.status(200).json({mensaje:`Profile`, usuario})
     }catch(error){
         return res.status(500).json({mensaje:"No se puede devolver perfil"})
     }

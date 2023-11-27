@@ -18,27 +18,33 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('users', userSchema);
 
-async function profile(_id){
-  try{
-      let profileCache = await redisClient.get(_id.toString())
-      if(profileCache){
-        console.log('De redis')
-        console.log(profileCache)
-        return profileCache
-      }
-      const profile = await User.findOne({_id:_id})
-      console.log('De mongo')
-      return profile
+/*
+let objectCache = await redisClient.HGET(collectionName, id)
+  if(objectCache){
+    console.log("retorno desde cache")
+    return JSON.parse(objectCache)
   }
-  catch (error) {
-      throw (`Imposible retornar ${error}`)
+
+*/
+
+async function profile(_id) {
+  try {
+    let profileCache = await redisClient.get(_id.toString()); //aca explota si le saco toString()
+    if (profileCache) {
+      console.log('De redis');
+      // Parse the cached profile before returning it
+      return JSON.parse(profileCache);
+    }
+    const profile = await User.findOne({ _id: _id });
+    console.log('De mongo');
+    return profile;
+  } catch (error) {
+    throw `Imposible retornar ${error}`;
   }
 }
-
+/*
 async function get(user, pass){
   try{
-    console.log(user)
-    console.log(pass)
     const res = await User.findOne({username:user})
     console.log(res)
     const compare = await bcrypt.compare(pass, res.password)
@@ -54,8 +60,9 @@ async function get(user, pass){
       apellido:res.apellido,
       rol:res.rol
      })
-     console.log('llegue')
+     console.log(userCache)
      redisClient.set(res._id.valueOf(),userCache,{EX:parseInt(process.env.REDIS_TTL)})
+     console.log(res._id.valueOf())
      console.log('guardado en cache')
      return res
      
@@ -64,6 +71,37 @@ async function get(user, pass){
       throw (`imposible retornar ${error}`)
   }
 }
+*/
+async function get(user, pass) {
+  try {
+    const res = await User.findOne({ username: user });
+    if (!res) {
+      throw 'Usuario no encontrado';
+    }
+    const compare = await bcrypt.compare(pass, res.password);
+
+    if (!compare) {
+      throw 'Contraseña incorrecta';
+    }
+    const userCache = JSON.stringify({
+      _id: res._id,
+      nombre: res.nombre,
+      apellido: res.apellido,
+      rol: res.rol,
+    });
+    // Guardo en cache
+    redisClient.set(res._id.valueOf(), userCache, {
+      EX: parseInt(process.env.REDIS_TTL),
+    });
+    console.log('Guardado en cache');
+    console.log(userCache)
+    // Solo retornar res si la comparación de contraseñas es exitosa
+    return res;
+  } catch (error) {
+    throw `Imposible retornar ${error}`;
+  }
+}
+
 
 async function post (datos){
   try {

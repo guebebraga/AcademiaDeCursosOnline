@@ -1,9 +1,12 @@
-/*
-const redisClient = require('./config/redis')
+/*const redisClient = require('./config/redis')
 
-redisClient.set("texto", "valor para texto")
+async function redisSet(){
 
+redisClient.set("texto", "guardado en cache")
 const data = await redisClient.get("texto")
-console.log(data)
 
+return console.log(data)
+}
+
+redisSet()
 */
