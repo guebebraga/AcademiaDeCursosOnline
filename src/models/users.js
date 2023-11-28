@@ -20,10 +20,10 @@ const User = mongoose.model('users', userSchema);
 
 async function profile(_id) {
   try {
-   let profileCache = await redisClient.get(_id._id); 
+   let profileCache = await redisClient.get(_id); 
    /* redisClient.get(_id.toString(), (err, reply) => console.log(reply))*/
    /* redisClient.exists(_id.toString())*/
-   let existe = await redisClient.exists(_id.toString())
+   let existe = await redisClient.exists(_id)
    console.log(existe)
 
     if (profileCache) {
@@ -31,7 +31,7 @@ async function profile(_id) {
      
       return JSON.parse(profileCache);
     }
-    const profile = await User.findOne({ _id: _id });
+    const profile = await User.findOne({ _id: _id});
     console.log('De mongo');
     return profile;
   } catch (error) {
@@ -45,12 +45,14 @@ async function get(user, pass) {
     if (!res) {
       throw 'Usuario no encontrado';
     }
+
     console.log(res)
     const compare = await bcrypt.compare(pass, res.password);
 
     if (!compare) {
       throw 'Contraseña incorrecta';
     }
+
     const userCache = JSON.stringify({
       _id: res._id.valueOf(),
       nombre: res.nombre,

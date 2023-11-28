@@ -6,7 +6,7 @@ const { Error } = require("../config/mongo.js");
 
 const profile = async (req, res)=>{
     try{
-        let _id = req.body
+        let _id = req.body._id
         if(!_id){
             return res.status(401).json({mensaje:"Faltan ingresar _id"})
         }
