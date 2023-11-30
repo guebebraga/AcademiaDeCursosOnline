@@ -9,10 +9,7 @@ const userSchema = new mongoose.Schema({
     username: {type: String, required: true, index:{ unique: true }},
     password : {type: String, required: true},
     rol: {type: String, required: true}
-    /*usuario: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'usuarios', 
-    }*/
+    
 },{timestamps: true})
 
 const User = mongoose.model('users', userSchema);
@@ -112,8 +109,15 @@ async function borrar(id){
   /*await Users.aggregate([
       { $match: { name: /Metal/ }}])); */
 
+
 async function allStudents(){
   try{
+    const checkCache = await redisClient.exists('all_students')
+      if(checkCache === 1){
+        let all_students = await redisClient.get('all_students') 
+        console.log('De cache')
+        return ('Todos los alumnos de cache', JSON.parse(all_students))
+      }
     let allStudents = await User.aggregate([
       {
         $match: { rol: /Alumno/ig }
@@ -128,7 +132,12 @@ async function allStudents(){
         }
       }
     ]);
-  
+    const all_students = JSON.stringify(allStudents);
+    console.log('Guardado en cache');
+    redisClient.set('all_students', all_students, {
+      EX: parseInt(process.env.REDIS_TTL),
+    });
+
   return ('Todos los alumnos', allStudents)
   }catch(error){
     throw (`No se puedo retornar ${error}`)

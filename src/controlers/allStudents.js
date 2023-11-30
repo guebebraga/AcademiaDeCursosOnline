@@ -1,4 +1,5 @@
 const modeloUser = require("../models/users.js")
+const redisClient = require("../config/redis.js")
 
 const get = async (req, res) => {
     try {
