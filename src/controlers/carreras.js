@@ -10,7 +10,7 @@ Alumno
 
 */
 
-const post = async(req,res)=>{
+const post = async(req, res, next)=>{
     try {
         let datos= await modeloCarreras.post(req.body)
         /*if(datos.rol !== 'admin'){
@@ -20,7 +20,8 @@ const post = async(req,res)=>{
         console.log(datos)
         return res.status(200).json({datos})
     }catch(error){
-        return res.status(500).json({mensaje:"Entraste en el catch de controlers"})
+        /*return res.status(500).json({mensaje:"Entraste en el catch de controlers"})*/
+        next(error)
     }
 }
 

@@ -23,7 +23,7 @@ const profile = async (req, res)=>{
 }
 
 
-const get = async(req,res)=>{
+const get = async(req,res, next)=>{
     try{
      let {username, password}=req.body
      
@@ -44,7 +44,8 @@ const get = async(req,res)=>{
      return res.status(200).json({mensaje:`Welcome back ${usuario.username} rol ${usuario.rol}`,token})
 
     }catch(error){
-        return res.status(500).json({mensaje:"A ocurrido un error"})
+        /*return res.status(500).json({mensaje:"A ocurrido un error"})*/
+        next(error) 
     }
 }
 

@@ -1,3 +1,5 @@
+const Sentry = require('@sentry/node');
+/*const { ProfilingIntegration } = require('@sentry/profiling-node');*/
 require('dotenv').config()
 const express = require('express')
 const routerIndex = require('./routes/index')
@@ -9,6 +11,15 @@ const routerCursos = require('./routes/cursos')
 
 const app = express()
 app.use(express.json())
+
+Sentry.init({
+    dsn: 'https://b904e3025780e1dc021d4cf5d83cbbe5@o4506326795091968.ingest.sentry.io/4506326869409792',
+  });
+
+// The request handler must be the first middleware on the app
+app.use(Sentry.Handlers.requestHandler());
+// TracingHandler creates a trace for every incoming request
+app.use(Sentry.Handlers.tracingHandler());
 
 app.use('/', routerIndex)
 app.use('/', routerUsers)
@@ -33,10 +44,26 @@ app.use('/', routerCursos)
 app.use('/', routerIndex)
 app.use('/', routerIndex)
 
-//
+app.use((req, res, next) => {
+try {
+    throw new Error("Page not found")
+} catch (error) {
+next(error)
+}    
+})
+  // The error handler must be registered before any other error middleware and after all controllers
+app.use(Sentry.Handlers.errorHandler());
+  
+// Optional fallthrough error handler
+app.use(function onError(err, req, res, next) {
+// The error id is attached to `res.sentry` to be returned
+// and optionally displayed to the user for support.
+res.status(500).json({msj: err.message});
+});
+
 app.listen(process.env.PORT,function(){
     console.log(`Running in the port ${process.env.PORT} gaby`)
-  })
+})
 
 /*  
                                 Trabajo final

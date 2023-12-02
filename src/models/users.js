@@ -112,9 +112,9 @@ async function borrar(id){
 
 async function allStudents(){
   try{
-    const checkCache = await redisClient.exists('all_students')
-      if(checkCache === 1){
-        let all_students = await redisClient.get('all_students') 
+    /*const checkCache = await redisClient.exists('all_students')*/
+    const all_students = await redisClient.get('all_students') 
+      if(all_students){
         console.log('De cache')
         return ('Todos los alumnos de cache', JSON.parse(all_students))
       }
@@ -132,9 +132,9 @@ async function allStudents(){
         }
       }
     ]);
-    const all_students = JSON.stringify(allStudents);
+    const all_studentsCache = JSON.stringify(allStudents);
     console.log('Guardado en cache');
-    redisClient.set('all_students', all_students, {
+    redisClient.set('all_students', all_studentsCache, {
       EX: parseInt(process.env.REDIS_TTL),
     });
 
