@@ -22,10 +22,8 @@ async function profile(_id) {
    /* redisClient.exists(_id.toString())*/
    let existe = await redisClient.exists(_id)
    console.log(existe)
-
     if (profileCache) {
       console.log('De redis');
-     
       return JSON.parse(profileCache);
     }
     const profile = await User.findOne({ _id: _id});

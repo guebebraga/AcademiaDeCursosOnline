@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { Error } = require("../config/mongo.js");
 
 
-const profile = async (req, res)=>{
+const profile = async (req, res, next)=>{
     try{
         let _id = req.body._id
         if(!_id){
@@ -15,10 +15,10 @@ const profile = async (req, res)=>{
         {
            return res.status(401).json({mensaje:"Algo no esta nada bien"})
         }
-
         return res.status(200).json({mensaje:`Profile`, usuario})
     }catch(error){
-        return res.status(500).json({mensaje:"No se puede devolver perfil"})
+        /*return res.status(500).json({mensaje:"No se puede devolver perfil"})*/
+        next(error)
     }
 }
 
@@ -56,17 +56,18 @@ Profesor
 Alumno
 
 */
-const post = async(req,res)=>{
+const post = async(req,res, next)=>{
     try {
         let datos= await modeloUser.post(req.body)
         console.log(datos)
         return res.status(200).json({datos})
     }catch(error){
-        return res.status(500).json({mensaje:"Entraste en el catch de controlers"})
+        /*return res.status(500).json({mensaje:"Entraste en el catch de controlers"})*/
+        next(error)
     }
 }
 
-const borrar = async(req,res)=>{
+const borrar = async(req, res, next)=>{
     try{
     user = await modeloUser.borrar(req.body._id)
     if(!user){
@@ -76,12 +77,13 @@ const borrar = async(req,res)=>{
 
     }catch(error){
         console.log(error)
-        return res.status(500).json({mensaje:"A ocurrido un error"})
+        /*return res.status(500).json({mensaje:"A ocurrido un error"})*/
+        next(error)
     }
 }
 
 
-const put = async(req,res)=>{
+const put = async(req, res, next)=>{
     try{
     const userId = req.params.userId
     const data = req.body
@@ -94,7 +96,8 @@ const put = async(req,res)=>{
 
     }catch(error){
         console.log(error)
-        return res.status(500).json({mensaje:"A ocurrido un error"})
+        /*return res.status(500).json({mensaje:"A ocurrido un error"})*/
+        next(error)
     }
 }
 
