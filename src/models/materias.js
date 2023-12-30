@@ -7,6 +7,7 @@ const materiasSchema = new mongoose.Schema({
     titulo: {type: String, required: true},
     descripcion: {type: String, required: true},
     examenes: {type: String, required: true},
+    alumnosId: [{type: String}],
     carrera: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'carreras', 
@@ -56,7 +57,17 @@ async function borrar(id){
   }catch (error) {
     throw (`Imposible borrar user: ${error}`)
   }}
+//agrego esta funcion con el fin de asociar alumnos y materias 
+  async function matAlumno (_id){
+    try{
+      let materia = await Materias.findOne({_id:_id})
+      return materia;
+  
+  }catch (error) {
+    throw (`Imposible retornar materia: ${error}`)
+  }s
+  }
 
-module.exports = {post, get, borrar, put}
+module.exports = {post, get, borrar, put, matAlumno}
 
 

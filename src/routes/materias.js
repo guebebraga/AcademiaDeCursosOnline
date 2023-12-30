@@ -10,5 +10,6 @@ router.post('/materias', middlewares.supValidacion, controlersMaterias.post)
 router.get('/materia', controlersMaterias.get)
 router.delete('/materia',controlersMaterias.borrar)
 router.put('/materia/:materiaId',controlersMaterias.put)
+router.get('/matAlumno',controlersMaterias.matAlumno)// agrego matAlumno
 
 module.exports= router

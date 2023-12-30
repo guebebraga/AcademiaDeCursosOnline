@@ -71,7 +71,7 @@ async function get(user, pass) {
   }
 }
 
-async function post (datos){
+async function post (datos){ // en el post user hay que poner materias
   try {
     const newUser = new User(datos);
     const salt = await bcrypt.genSalt(10)

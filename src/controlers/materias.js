@@ -62,5 +62,20 @@ const borrar = async(req,res)=>{
     }
 }
 
+const matAlumno = async(req,res)=>{
+    try{
+     materia = await modeloMaterias.matAlumno(req.body._id)
+     console.log(materia)
+     if(!materia){
+        return res.status(401).json({mensaje:"No se encontro materia"})
+     }
+     return res.status(200).json({mensaje:`Resultados de la busqueda`,materia})
 
-module.exports={post, get, borrar, put}
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({mensaje:"A ocurrido un error"})
+    }
+};
+
+
+module.exports={post, get, borrar, put , matAlumno}

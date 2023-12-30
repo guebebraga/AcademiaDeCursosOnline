@@ -43,6 +43,7 @@ app.use('/', routerCursos)
 app.use('/', routerCursos)
 app.use('/', routerIndex)
 app.use('/', routerIndex)
+app.use('/', routerMatrias)//agrego cantidad de alumnos por materia
 
 app.use((req, res, next) => {
 try {
@@ -62,7 +63,7 @@ res.status(500).json({msj: err.message});
 });
 
 app.listen(process.env.PORT,function(){
-    console.log(`Running in the port ${process.env.PORT} gaby`)
+    console.log(`Running in the port ${process.env.PORT}`)
 })
 
 /*  
