@@ -101,7 +101,15 @@ const put = async(req, res, next)=>{
     }
 }
 
+const profes = async (req, res) => {
+    try {
+      profes = await modeloUser.profes()
+      return res.status(200).json({ msj: "Todos los profes", profes: profes});  
+    } catch (error) {
+      return res.status(500).json({msj: "No se puedo retornar profes"})
+    }
+  };
 
 
-module.exports={post, get, borrar, put, profile}
+module.exports={post, get, borrar, put, profile, profes}
 

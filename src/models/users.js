@@ -142,6 +142,29 @@ async function allStudents(){
   }
 }
 
+async function profes(){
+  try{
+      let profes = await User.aggregate([
+      {
+        $match: {rol:/Profesor/ig }
+      },
+      {
+        $project: {
+          nombre:1,
+          apellido:1, 
+          username:1,
+          rol:1, 
+          _id:1
+        }
+      }
+    ]);
+  console.log('llegue hasta aca')
+  return ('Todos los profes', profes)
+  }catch(error){
+    throw (`No se puedo retornar ${error}`)
+  }
+}
 
-module.exports = {post, get, borrar, put, allStudents, profile}
+
+module.exports = {post, get, borrar, put, allStudents, profile, profes}
 

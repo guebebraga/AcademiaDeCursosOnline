@@ -44,6 +44,7 @@ app.use('/', routerCursos)
 app.use('/', routerIndex)
 app.use('/', routerIndex)
 app.use('/', routerMatrias)//agrego cantidad de alumnos por materia
+app.use('/', routerIndex)
 
 app.use((req, res, next) => {
 try {
