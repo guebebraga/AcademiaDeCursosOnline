@@ -158,7 +158,7 @@ async function profes(){
         }
       }
     ]);
-  console.log('llegue hasta aca')
+
   return ('Todos los profes', profes)
   }catch(error){
     throw (`No se puedo retornar ${error}`)

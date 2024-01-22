@@ -22,7 +22,6 @@ const profile = async (req, res, next)=>{
     }
 }
 
-
 const get = async(req,res, next)=>{
     try{
      let {username, password}=req.body
@@ -82,7 +81,6 @@ const borrar = async(req, res, next)=>{
     }
 }
 
-
 const put = async(req, res, next)=>{
     try{
     const userId = req.params.userId
@@ -103,8 +101,8 @@ const put = async(req, res, next)=>{
 
 const profes = async (req, res) => {
     try {
-      profes = await modeloUser.profes()
-      return res.status(200).json({ msj: "Todos los profes", profes: profes});  
+      profesores = await modeloUser.profes()
+      return res.status(200).json({ msj: "Todos los profes", profesores: profesores});  
     } catch (error) {
       return res.status(500).json({msj: "No se puedo retornar profes"})
     }
